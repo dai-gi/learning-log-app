@@ -3,14 +3,25 @@ import { useState } from 'react';
 export const App = () => {
   const [learningContent, setLearningContent] = useState('');
   const [studyTime, setStudyTime] = useState('');
-  const records = [
-    { title: '勉強の記録1', time: 1 },
-    { title: '勉強の記録2', time: 3 },
-    { title: '勉強の記録3', time: 5 }
-  ];
+  const [records, setRecords] = useState([]);
+  const [error, setError] = useState('');
 
   const onChangeLearningContent = (e) => setLearningContent(e.target.value);
   const onChangeStudyTime = (e) => setStudyTime(e.target.value);
+  const onClickAdd = () => {
+    const newRecords = [
+      ...records,
+      { title: learningContent, time: studyTime }
+    ];
+    if (!learningContent || !studyTime) {
+      setError('入力されていない項目があります');
+    } else {
+      setError('');
+      setRecords(newRecords);
+    }
+    setLearningContent('');
+    setStudyTime('');
+  };
 
   return (
     <>
@@ -30,6 +41,8 @@ export const App = () => {
       </p>
       <p>{`入力されている学習内容：${learningContent}`}</p>
       <p>{`入力されている時間：${studyTime}時間`}</p>
+      <button onClick={onClickAdd}>登録</button>
+      <p>{error}</p>
       {records.map((record) => (
         <p>{`${record.title} ${record.time}時間`}</p>
       ))}
