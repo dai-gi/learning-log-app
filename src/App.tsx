@@ -28,7 +28,7 @@ export const App = () => {
         </span>
         <span>時間</span>
       </p>
-      <p>{`入力されている学習：${learningContent}`}</p>
+      <p>{`入力されている学習内容：${learningContent}`}</p>
       <p>{`入力されている時間：${studyTime}時間`}</p>
       {records.map((record) => (
         <p>{`${record.title} ${record.time}時間`}</p>
