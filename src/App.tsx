@@ -28,6 +28,11 @@ export const App = () => {
 
     setRecords(newRecords);
 
+    const totalStudyTime = newRecords
+      .map((records) => records.time)
+      .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+    setTotalTime(totalStudyTime);
     setLearningContent('');
     setStudyTime('');
   };
@@ -50,12 +55,12 @@ export const App = () => {
       </p>
       <p>{`入力されている学習内容：${learningContent}`}</p>
       <p>{`入力されている時間：${studyTime}時間`}</p>
-      <button onClick={onClickAdd}>登録</button>
       <ul>
         {records.map((record) => (
           <li key={record}>{`${record.title} ${record.time}時間`}</li>
         ))}
       </ul>
+      <button onClick={onClickAdd}>登録</button>
       <p>{error}</p>
       <p>{`合計時間：${totalTime} / 1000(h)`}</p>
     </>
