@@ -5,20 +5,29 @@ export const App = () => {
   const [studyTime, setStudyTime] = useState('');
   const [records, setRecords] = useState([]);
   const [error, setError] = useState('');
+  const [totalTime, setTotalTime] = useState(0);
 
   const onChangeLearningContent = (e) => setLearningContent(e.target.value);
-  const onChangeStudyTime = (e) => setStudyTime(e.target.value);
+  const onChangeStudyTime = (e) => setStudyTime(parseInt(e.target.value));
   const onClickAdd = () => {
+    if (!learningContent || !studyTime) {
+      setError('入力されていない項目があります');
+      setLearningContent('');
+      setStudyTime('');
+      return;
+    }
+
+    if (error) {
+      setError('');
+    }
+
     const newRecords = [
       ...records,
       { title: learningContent, time: studyTime }
     ];
-    if (!learningContent || !studyTime) {
-      setError('入力されていない項目があります');
-    } else {
-      setError('');
-      setRecords(newRecords);
-    }
+
+    setRecords(newRecords);
+
     setLearningContent('');
     setStudyTime('');
   };
@@ -42,10 +51,13 @@ export const App = () => {
       <p>{`入力されている学習内容：${learningContent}`}</p>
       <p>{`入力されている時間：${studyTime}時間`}</p>
       <button onClick={onClickAdd}>登録</button>
+      <ul>
+        {records.map((record) => (
+          <li key={record}>{`${record.title} ${record.time}時間`}</li>
+        ))}
+      </ul>
       <p>{error}</p>
-      {records.map((record) => (
-        <p>{`${record.title} ${record.time}時間`}</p>
-      ))}
+      <p>{`合計時間：${totalTime} / 1000(h)`}</p>
     </>
   );
 };
