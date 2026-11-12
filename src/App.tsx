@@ -29,7 +29,7 @@ export const App = () => {
     setRecords(newRecords);
 
     const totalStudyTime = newRecords
-      .map((records) => records.time)
+      .map((record) => record.time)
       .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
     setTotalTime(totalStudyTime);
