@@ -1,11 +1,13 @@
 import './App.css';
 import { useState } from 'react';
+import { calcTotalTime } from './utils/calcTotalTime.js';
+
 export const App = () => {
   const [learningContent, setLearningContent] = useState('');
   const [studyTime, setStudyTime] = useState('');
   const [records, setRecords] = useState([]);
   const [error, setError] = useState('');
-  const [totalTime, setTotalTime] = useState(0);
+  const totalTime = calcTotalTime(records);
 
   const onChangeLearningContent = (e) => setLearningContent(e.target.value);
   const onChangeStudyTime = (e) => setStudyTime(parseInt(e.target.value));
@@ -28,11 +30,6 @@ export const App = () => {
 
     setRecords(newRecords);
 
-    const totalStudyTime = newRecords
-      .map((record) => record.time)
-      .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
-    setTotalTime(totalStudyTime);
     setLearningContent('');
     setStudyTime('');
   };
