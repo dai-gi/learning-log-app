@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import { calcTotalTime } from './utils/calcTotalTime.js';
+import { PrimaryButton } from './components/atom/button/PrimaryButton.js';
 
 export const App = () => {
   const [learningContent, setLearningContent] = useState('');
@@ -57,7 +58,7 @@ export const App = () => {
           <li key={record}>{`${record.title} ${record.time}時間`}</li>
         ))}
       </ul>
-      <button onClick={onClickAdd}>登録</button>
+      <PrimaryButton onClick={onClickAdd}>登録</PrimaryButton>
       <p>{error}</p>
       <p>{`合計時間：${totalTime} / 1000(h)`}</p>
     </>
