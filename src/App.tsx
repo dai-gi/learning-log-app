@@ -1,7 +1,9 @@
 import './App.css';
 import { useState } from 'react';
 import { calcTotalTime } from './utils/calcTotalTime.js';
-import { PrimaryButton } from './components/atom/button/PrimaryButton.js';
+import { PrimaryButton } from './components/atom/button/PrimaryButton.tsx';
+import { TextInput } from './components/atom/input/TextInput.tsx';
+import { NumberInput } from './components/atom/input/NumberInput.tsx';
 
 export const App = () => {
   const [learningContent, setLearningContent] = useState('');
@@ -38,19 +40,17 @@ export const App = () => {
   return (
     <>
       <h1>学習記録一覧</h1>
-      <p>
-        学習内容
-        <span>
-          <input value={learningContent} onChange={onChangeLearningContent} />
-        </span>
-      </p>
-      <p>
-        学習時間
-        <span>
-          <input type="number" value={studyTime} onChange={onChangeStudyTime} />
-        </span>
-        <span>時間</span>
-      </p>
+      <TextInput
+        learningContent={learningContent}
+        onChange={onChangeLearningContent}
+        prefixes={"学習内容"}
+      />
+      <NumberInput
+        learningContent={learningContent}
+        onChange={onChangeLearningContent}
+        prefixes={"学習時間"}
+        suffixes={"時間"}
+      />
       <p>{`入力されている学習内容：${learningContent}`}</p>
       <p>{`入力されている時間：${studyTime}時間`}</p>
       <ul>
