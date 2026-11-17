@@ -5,6 +5,7 @@ import { PrimaryButton } from './components/atom/button/PrimaryButton.tsx';
 import { TextInput } from './components/atom/input/TextInput.tsx';
 import { NumberInput } from './components/atom/input/NumberInput.tsx';
 import { TotalTime } from './components/atom/totalTime/TotalTime.tsx';
+import { Message } from './components/atom/message/Message.tsx';
 
 export const App = () => {
   const [learningContent, setLearningContent] = useState('');
@@ -60,7 +61,7 @@ export const App = () => {
         ))}
       </ul>
       <PrimaryButton onClick={onClickAdd}>登録</PrimaryButton>
-      <p>{error}</p>
+      <Message message={error}/>
       <TotalTime totalTime={totalTime} />
     </>
   );
