@@ -4,6 +4,7 @@ import { calcTotalTime } from './utils/calcTotalTime.js';
 import { PrimaryButton } from './components/atom/button/PrimaryButton.tsx';
 import { TextInput } from './components/atom/input/TextInput.tsx';
 import { NumberInput } from './components/atom/input/NumberInput.tsx';
+import { TotalTime } from './components/atom/totalTime/TotalTime.tsx';
 
 export const App = () => {
   const [learningContent, setLearningContent] = useState('');
@@ -47,7 +48,7 @@ export const App = () => {
       />
       <NumberInput
         learningContent={learningContent}
-        onChange={onChangeLearningContent}
+        onChange={onChangeStudyTime}
         prefixes={"学習時間"}
         suffixes={"時間"}
       />
@@ -60,7 +61,7 @@ export const App = () => {
       </ul>
       <PrimaryButton onClick={onClickAdd}>登録</PrimaryButton>
       <p>{error}</p>
-      <p>{`合計時間：${totalTime} / 1000(h)`}</p>
+      <TotalTime totalTime={totalTime} />
     </>
   );
 };
