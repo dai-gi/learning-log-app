@@ -4,8 +4,7 @@ import { calcTotalTime } from './utils/calcTotalTime.js';
 import { PrimaryButton } from './components/atom/button/PrimaryButton.tsx';
 import { TextInput } from './components/atom/input/TextInput.tsx';
 import { NumberInput } from './components/atom/input/NumberInput.tsx';
-import { TotalTime } from './components/atom/totalTime/TotalTime.tsx';
-import { Message } from './components/atom/message/Message.tsx';
+import { Inform } from './components/molecules/Inform.tsx';
 
 export const App = () => {
   const [learningContent, setLearningContent] = useState('');
@@ -34,7 +33,6 @@ export const App = () => {
     ];
 
     setRecords(newRecords);
-
     setLearningContent('');
     setStudyTime('');
   };
@@ -43,12 +41,12 @@ export const App = () => {
     <>
       <h1>学習記録一覧</h1>
       <TextInput
-        learningContent={learningContent}
+        content={learningContent}
         onChange={onChangeLearningContent}
         prefixes={"学習内容"}
       />
       <NumberInput
-        learningContent={learningContent}
+        content={studyTime}
         onChange={onChangeStudyTime}
         prefixes={"学習時間"}
         suffixes={"時間"}
@@ -61,8 +59,7 @@ export const App = () => {
         ))}
       </ul>
       <PrimaryButton onClick={onClickAdd}>登録</PrimaryButton>
-      <Message message={error}/>
-      <TotalTime totalTime={totalTime} />
+      <Inform message={error} totalTime={totalTime}/>
     </>
   );
 };
